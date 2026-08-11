@@ -1,0 +1,30 @@
+# Virtual environment
+venv/
+env/
+
+# Environment variables / secrets
+.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Application cache
+cache/
+
+# Generated files
+exports/
+
+# Uploaded documents
+uploads/
+
+# Local data
+data/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db

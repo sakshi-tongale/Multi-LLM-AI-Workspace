@@ -1,0 +1,8 @@
+google-genai
+openai
+anthropic
+python-dotenv
+pypdf
+streamlit
+pandas
+matplotlib
