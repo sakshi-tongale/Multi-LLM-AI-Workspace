@@ -2,9 +2,18 @@
 
 A Python-based Generative AI application that integrates multiple Large Language Models, including Google Gemini and Claude through OpenRouter. The project provides a unified workspace for AI-powered productivity, developer, document, research, and data science workflows.
 
-🎯 Problem Statement
+## 🎯 Problem Statement
 
-Using multiple AI models usually means switching between different websites, API keys, and interfaces. Working with documents (PDFs, reports, research material) adds more manual effort. This project brings multiple LLMs, document Q&A, and AI productivity tools into one workspace, so users can pick the right model for each task and get answers grounded in their own documents.
+Using multiple AI models usually means switching between different websites, API keys, and interfaces. Working with documents (PDFs, reports, research material) adds more manual effort. This project brings multiple LLMs, document Q&A, and AI productivity tools into **one workspace**, so users can pick the right model for each task and get answers grounded in their own documents.
+
+## 💡 Use Cases
+
+- **Students and researchers:** generate structured research reports and summarize long documents
+- **Business users:** ask questions from PDFs (reports, policies, contracts) without reading them end to end
+- **Developers:** get help with code, SQL, and code review
+- **Data professionals:** use AI to support analysis and data science workflows
+- **Everyday productivity:** draft emails, improve resumes, and reuse saved prompts
+
 
 ## 🚀 Key Features
 
@@ -38,75 +47,67 @@ Using multiple AI models usually means switching between different websites, API
 - **Streamlit**
 - **Git & GitHub**
 
+---
+
 ## 🏗️ Architecture
 
-                  
-                         Multi-LLM AI Workspace
-                                  │
-                                  ▼
-                            Model Selection
-                         ┌────────┴────────┐
-                         │                 │
-                      Gemini             Claude
-                         │            (OpenRouter)
-                         └────────┬────────┘
-                                  │
-                                  ▼
-                            LLM Router
-                         (`ask_model()`)
-                                  │
-              ┌───────────────────┼───────────────────┐
-              │                   │                   │
-              ▼                   ▼                   ▼
-        Core AI Tools      Developer AI Tools   Data Science Tools
-              │                   │                   │
-              ├─ General Chat     ├─ Code Tools       ├─ Data Analysis
-              ├─ Email Generator  ├─ SQL Tools        ├─ Data Science
-              ├─ Resume Tools     ├─ Code Review      └─ Other AI Tools
-              └─ Other AI Tools   └─ Developer Tools
-                                  │
-                                  ▼
-                       Advanced LLM Features
-                                  │
-        ┌───────────────┬──────────────┬──────────────┬───────────────┐
-        │               │              │              │               │
-        ▼               ▼              ▼              ▼               ▼
-   Research         Chat with      Document       Prompt         Document
-   Assistant           PDF         Summarizer     Library           Q&A
-                         │
-                         ▼
-                    RAG Pipeline
-                         │
-              ┌──────────┴──────────┐
-              │                     │
-              ▼                     ▼
-         PDF Loader            Text Splitter
-              │                     │
-              └──────────┬──────────┘
-                         ▼
-                   Embeddings
-                         │
-                         ▼
-                  FAISS Vector Store
-                         │
-                         ▼
-                  Semantic Search
-                         │
-                         ▼
-                 Relevant Context
-                         │
-                         ▼
-                    LLM Response
+```text
+                 Multi-LLM AI Workspace
+                          │
+                          ▼
+                    Model Selection
+                 ┌────────┴────────┐
+                 │                 │
+              Gemini             Claude
+                 │            (OpenRouter)
+                 └────────┬────────┘
+                          │
+                          ▼
+                    LLM Router
+                    (ask_model())
+                          │
+      ┌───────────────────┼───────────────────┐
+      ▼                   ▼                   ▼
+ Core AI Tools     Developer AI Tools   Data Science Tools
+ - General Chat    - Code Tools         - Data Analysis
+ - Email Generator - SQL Tools          - Data Science
+ - Resume Tools    - Code Review
+                          │
+                          ▼
+               Advanced LLM Features
+   ┌──────────────┬──────────────┬──────────────┬──────────────┐
+   ▼              ▼              ▼              ▼              ▼
+Research      Chat with       Document       Prompt        Document
+Assistant     PDF             Summarizer     Library       Q&A
+```
 
-📁 Project Structure
-text
+### RAG Pipeline
+
+```text
+PDF Loader ──► Text Splitter ──► Embeddings ──► FAISS Vector Store
+                                                      │
+                                                      ▼
+                                               Semantic Search
+                                                      │
+                                                      ▼
+                                              Relevant Context
+                                                      │
+                                                      ▼
+                                                LLM Response
+```
+
+---
+
+## 📁 Project Structure
+
+```text
 Multi-LLM-AI-Workspace/
-├── llms/               # LLM integrations and model routing   
-├── menus/              # Menu / feature navigation            
-├── tools/              # AI tools (developer, data science, etc.) 
-├── ui/                 # User interface components            
-├── utils/              # Helper functions                     
-├── app.py              # Main application entry point         
+├── llms/               # LLM integrations and model routing
+├── menus/              # Menu / feature navigation
+├── tools/              # AI tools (developer, data science, etc.)
+├── ui/                 # User interface components
+├── utils/              # Helper functions
+├── app.py              # Main application entry point
 ├── streamlit_app.py    # Streamlit web interface
 ├── Run_MultiLLM.bat    # Quick-start script for Windows
 ├── requirements.txt    # Python dependencies
@@ -114,15 +115,20 @@ Multi-LLM-AI-Workspace/
 ├── test_models.py      # Tests: model routing
 ├── test_pdf.py         # Tests: PDF processing
 └── test_export.py      # Tests: export feature
+```
 
-⚙️ Installation and Setup
-Prerequisites
-Python 3.9 or higher [VERIFY]
-A Google Gemini API key
-An OpenRouter API key (for Claude)
+---
 
-**Steps**
+## ⚙️ Installation and Setup
 
+### Prerequisites
+- Python 3.9 or higher
+- A Google Gemini API key
+- An OpenRouter API key (for Claude)
+
+### Steps
+
+```bash
 # 1. Clone the repository
 git clone https://github.com/sakshi-tongale/Multi-LLM-AI-Workspace.git
 cd Multi-LLM-AI-Workspace
@@ -134,30 +140,49 @@ venv\Scripts\activate        # Windows
 
 # 3. Install dependencies
 pip install -r requirements.txt
+```
 
-**Configuration**
-Create a .env file in the project root and add your keys:
+### Configuration
 
+Create a `.env` file in the project root and add your keys:
+
+```env
 GEMINI_API_KEY=your_gemini_api_key_here
 OPENROUTER_API_KEY=your_openrouter_api_key_here
+```
 
-**▶️ Usage**
 
-Run the Streamlit app:
+---
+
+## ▶️ Usage
+
+**Run the Streamlit app:**
+
+```bash
 streamlit run streamlit_app.py
+```
+
 **Or on Windows, double-click:**
+
+```text
 Run_MultiLLM.bat
+```
 
 **Basic flow:**
+1. Select a model (Gemini or Claude)
+2. Choose a tool (Chat, Research Assistant, PDF Chat, Summarizer, etc.)
+3. For PDF Chat, upload a document and ask questions about it
+4. Export or reuse results as needed
 
-Select a model (Gemini or Claude)
-Choose a tool (Chat, Research Assistant, PDF Chat, Summarizer, etc.)
-For PDF Chat, upload a document and ask questions about it
-Export or reuse results as needed
+---
 
-🔮 Future Improvements
-Add support for more LLM providers and models
-Support multiple document uploads and DOCX / TXT files in RAG
-Add user authentication and saved chat history
-Deploy the app online (Streamlit Community Cloud)
-Add response comparison view to see multiple models side by side
+## 🔮 Future Improvements
+
+- Add support for more LLM providers and models
+- Support multiple document uploads and DOCX / TXT files in RAG
+- Add user authentication and saved chat history
+- Deploy the app online (Streamlit Community Cloud)
+- Add response comparison view to see multiple models side by side
+
+---
+
